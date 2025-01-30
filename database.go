@@ -9,7 +9,7 @@ import (
 )
 
 func ConnectToDB() (*pgxpool.Pool, error) {
-	dbPassowrd, err := GetDBPassword("../.env")
+	dbPassowrd, err := GetDBPassword("./.env")
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}

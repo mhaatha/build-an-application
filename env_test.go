@@ -11,7 +11,7 @@ func TestEnv(t *testing.T) {
 		os.Setenv("DB_PASSWORD", mockPassword)
 		defer os.Unsetenv("DB_PASSWORD")
 
-		got, _ := GetDBPassword("../.env")
+		got, _ := GetDBPassword("./.env")
 		want := mockPassword
 
 		if got != want {
