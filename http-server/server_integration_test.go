@@ -7,9 +7,13 @@ import (
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
-	store := NewInMemoryPlayerStore()
+	db, err := ConnectToDB()
+	if err != nil {
+		t.Errorf("error can't connect to db: %v", err)
+	}
+	store := NewPostgresPlayerStore(db)
 	server := PlayerServer{store}
-	player := "Pepper"
+	player := "Player"
 
 	server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))
 	server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))
