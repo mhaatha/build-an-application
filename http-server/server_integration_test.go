@@ -13,7 +13,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	}
 	store := NewPostgresPlayerStore(db)
 	server := PlayerServer{store}
-	player := "NewPlayer"
+	player := "NewPlayer1"
 
 	server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))
 	server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))

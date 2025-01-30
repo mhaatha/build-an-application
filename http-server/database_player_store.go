@@ -3,11 +3,13 @@ package main
 import (
 	"context"
 	"log"
+	"sync"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type PostgresPlayerStore struct {
+	mu sync.Mutex
 	db *pgxpool.Pool
 }
 
@@ -28,6 +30,9 @@ func (p *PostgresPlayerStore) GetPlayerScore(name string) int {
 }
 
 func (p *PostgresPlayerStore) RecordWin(name string) {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
 	query := `
 		INSERT INTO players (name, score)
 		VALUES ($1, 1)
