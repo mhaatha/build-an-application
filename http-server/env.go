@@ -15,5 +15,10 @@ func GetDBPassword(path string) (string, error) {
 		}
 	}
 
-	return os.Getenv("DB_PASSWORD"), nil
+	dbPassword := os.Getenv("DB_PASSWORD")
+	if dbPassword == "" {
+		return "", errors.New("error loading .env file")
+	}
+
+	return dbPassword, nil
 }
