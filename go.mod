@@ -1,3 +1,3 @@
-module github.com/mhaatha/build-an-application
+module github.com/mhaatha/scoring-rest-api
 
 go 1.23.1
