@@ -6,10 +6,6 @@ import (
 )
 
 func main() {
-	db, err := ConnectToDB()
-	if err != nil {
-		log.Printf("error can't connect to db: %v", err)
-	}
-	server := &PlayerServer{NewPostgresPlayerStore(db)}
+	server := &PlayerServer{NewInMemoryPlayerStore()}
 	log.Fatal(http.ListenAndServe(":5000", server))
 }
